@@ -2,7 +2,7 @@
 lower = True
 for i in range(26):
     if lower:
-        print(chr(ord('z') - i), end='')
+        print('{:c}'.format(ord('z') - i), end='')
     else:
-        print(chr(ord('z') - i - 32), end='')
+        print('{:c}'.format(ord('z') - i - 32), end='')
     lower = not lower
