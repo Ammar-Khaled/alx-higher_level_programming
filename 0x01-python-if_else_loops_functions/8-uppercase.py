@@ -2,8 +2,8 @@
 def uppercase(str):
     for i in range(len(str)):
         if ord('a') <= ord(str[i]) <= ord('z'):
-		num = 32
+            num = 32
         else:
-                num = 0            
+            num = 0
     print('{:c}'.format(ord(str[i]) - num), end='')
     print()
