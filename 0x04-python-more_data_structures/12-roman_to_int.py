@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
     """" converts a Roman numeral to an integer. """
-    if not roman_string:
+    if not roman_string or not isinstance(roman_string, str):
         return 0
     
     roman_numerals = {
