@@ -32,7 +32,7 @@ void print_python_bytes(PyObject *p)
         max_printed = size + 1;
     }
 
-    printf("  first %i bytes:", max_printed);
+    printf("  first %ld bytes:", max_printed);
 
     for (i = 0; i < max_printed; i++)
     {
