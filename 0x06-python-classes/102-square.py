@@ -53,7 +53,7 @@ class Square:
 
     def __ge__(self, other) -> bool:
         """perform greater than or equal based on area"""
-        return self.area() > other.area()
+        return self.area() >= other.area()
 
     def __lt__(self, other) -> bool:
         """perform less than test based on area"""
@@ -61,4 +61,4 @@ class Square:
 
     def __le__(self, other) -> bool:
         """perform less than or equal based on area"""
-        return self.area() < other.area()
+        return self.area() <= other.area()
