@@ -74,10 +74,11 @@ class Square:
         if (self.size == 0):
             pass
         else:
-            for i in range(self.position[1]):
-                msg += "\n"
-            for i in range(0, self.size):
+            msg += "\n" * self.position[1]
+            for i in range(self.size - 1):
                 msg += " " * self.position[0]
                 msg += "#" * self.size
                 msg += "\n"
+            msg += " " * self.position[0]
+            msg += "#" * self.size
         return msg
