@@ -3,12 +3,18 @@
 
 
 def lazy_matrix_mul(m_a, m_b):
-    """multiplies 2 matrices by using the module NumPy"""
+    """ Function that multiplies 2 matrices
+
+    Args:
+        m_a: matrix a
+        m_b: matrix b
+
+    Returns:
+        result of the multiplication
+
+
+    """
 
     import numpy as np
 
-    m_a = np.array(m_a)
-    m_b = np.array(m_b)
-
-    return np.dot(m_a, m_b)
-
+    return np.matmul(m_a, m_b)
