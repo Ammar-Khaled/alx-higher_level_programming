@@ -29,4 +29,4 @@ def text_indentation(text):
         if text[i] == "." or text[i] == "?" or text[i] == ":":
             text = text[:i].strip() + text[i] + "\n\n" + text[i+1:].strip()
 
-    print(text[:-1])
+    print(text, end="")
