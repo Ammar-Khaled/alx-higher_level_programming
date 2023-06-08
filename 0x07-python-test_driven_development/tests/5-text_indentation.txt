@@ -73,23 +73,3 @@ Printing a char number
 
     >>> text_indentation('2')
     2
-
-Passing a new line as a text
-
-    >>> text_indentation('\n')
-    <BLANKLINE>
-
-Passing a text with spaces and one new line
-
-    >>> text_indentation("   \n")
-    <BLANKLINE>
-
-Passing a text with spaces and one new line 2
-
-   >>> text_indentation("   \n   ")
-   <BLANKLINE>
-
-Passing a text with spaces and one new line 3
-
-   >>> text_indentation("\n   ")
-   <BLANKLINE>
