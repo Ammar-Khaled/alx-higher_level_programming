@@ -18,3 +18,4 @@ Project done during **Full Stack Software Engineering studies** at **Holberton S
 | `tests/6-max_integer_test.py` | Unittests for the function `def max_integer(list=[])` |
 | `100-matrix_mul.py` | Function that multiplies 2 matrices (Doctest on `tests/100-matrix_mul.txt`) |
 | `101-lazy_matrix_mul.py` | Function that multiplies 2 matrices by using the module **NumPy** (Doctest on `tests/101-lazy_matrix_mul.txt`) |
+| `102-python.c` | Function that prints python string info |
