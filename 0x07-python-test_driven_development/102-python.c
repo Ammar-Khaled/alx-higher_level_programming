@@ -36,6 +36,7 @@ void print_python_string(PyObject *p)
     printf("  value: %s\n", PyBytes_AsString(str));
 
     /**
+     * PyUnicode_AsEncodedString
      * this function converts unicode string object to a bytes object
      * p: the Unicode string object to be encoded.
      * utf-8: the encoding to use for the conversion.
@@ -46,6 +47,4 @@ void print_python_string(PyObject *p)
      *  which is a special character indicates that a character
      *  could not be represented in the target encoding.
      */
-
-
 }
