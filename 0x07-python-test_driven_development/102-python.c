@@ -8,7 +8,9 @@
  */
 void print_python_string(PyObject *p)
 {
-    char *str;
+    char *str, *repr;
+
+    (void)repr;
 
     printf("[.] string object info\n");
 
@@ -28,6 +30,8 @@ void print_python_string(PyObject *p)
         printf("  type: compact unicode object\n");
     }
 
+    repr = PyObject_Repr(p);
+    
     printf("  length: %ld\n", PyUnicode_GET_SIZE(p));
 
     str = PyUnicode_AsEncodedString(p, "utf-8","~E~");
