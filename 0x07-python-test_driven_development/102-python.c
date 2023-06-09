@@ -8,7 +8,7 @@
  */
 void print_python_string(PyObject *p)
 {
-    char *str, *repr;
+    PyObject *str, *repr;
 
     (void)repr;
 
@@ -31,10 +31,10 @@ void print_python_string(PyObject *p)
     }
 
     repr = PyObject_Repr(p);
-    
+    str = PyUnicode_AsEncodedString(p, "utf-8", "~E~");
     printf("  length: %ld\n", PyUnicode_GET_SIZE(p));
+    printf("  value: %s\n", PyBytes_AsString(str));
 
-    str = PyUnicode_AsEncodedString(p, "utf-8","~E~");
     /**
      * this function converts unicode string object to a bytes object
      * p: the Unicode string object to be encoded.
@@ -47,5 +47,5 @@ void print_python_string(PyObject *p)
      *  could not be represented in the target encoding.
      */
 
-    printf("  value: %s\n", PyBytes_AsString(str));
+
 }
