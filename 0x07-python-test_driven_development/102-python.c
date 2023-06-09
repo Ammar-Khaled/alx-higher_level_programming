@@ -13,7 +13,7 @@ void print_python_string(PyObject *p)
     printf("[.] string object info\n");
 
     /*checks if the PyObject represents a string object*/
-    if (strcmp("str", p->ob_type->tb_name) != 0)
+    if (strcmp("str", p->ob_type->tp_name) != 0)
     {
         printf("  [ERROR] Invalid String Object\n");
         return;
@@ -30,7 +30,7 @@ void print_python_string(PyObject *p)
 
     printf("  length: %ld\n", PyUnicode_GET_SIZE(p));
 
-    srt = PyUnicode_AsEncodedString(p, "utf-8"."~E~");
+    str = PyUnicode_AsEncodedString(p, "utf-8","~E~");
     /**
      * this function converts unicode string object to a bytes object
      * p: the Unicode string object to be encoded.
