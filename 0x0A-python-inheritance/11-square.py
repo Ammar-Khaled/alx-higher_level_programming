@@ -2,7 +2,7 @@
 """ This module defines a Rectangle class
 """
 
-Rectangle = __import__('9-Rectangle').Rectangle
+Rectangle = __import__('9-rectangle').Rectangle
 
 
 class Square(Rectangle):
@@ -22,11 +22,11 @@ class Square(Rectangle):
 
         super().integer_validator('size', size)
         self.__size = size
+        super().__init__(self.__size, self.__size)
 
     def area(self):
         """ calculate square area."""
-
-        return self.__size ** 2
+        return super().area()
 
     def __str__(self):
         """ string info for object."""
