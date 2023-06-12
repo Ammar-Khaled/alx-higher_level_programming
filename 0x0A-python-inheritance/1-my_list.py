@@ -3,7 +3,11 @@
 
 
 class MyList(list):
-    """ a class that represents my own list type."""
+    """ a class that represents my own list type.
+        Args:
+            list: class list
+
+    """
 
     def print_sorted(self):
         """ prints the list, but sorted ascendingly sort
