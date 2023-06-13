@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ This module defines class_to_json() function."""
 
+
 def class_to_json(obj):
     """  retuns the dictionary description of an obj
 
