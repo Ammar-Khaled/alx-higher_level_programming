@@ -11,20 +11,20 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
-        """ retrieves a dictionary representation of a Student instance."""
-        dict = self.__dict__.copy()
+    def to_json(self, attrs=None):
+        """ retrieves attrs from the dictionary representation
+            of a Student instance."""
+        full_dict = self.__dict__.copy()
 
         if type(attrs) == list:
             for element in attrs:
                 if type(element) != str:
-                    return dict
+                    return full_dict
 
             new_dict = {}
-            for i in range(len(attrs)):
-                for attr in dict:
-                    if attr == attrs[i]:
-                        new_dict[attr] = dict[attr]
+            for attr in full_dict:
+                if attr in attrs:
+                    new_dict[attr] = full_dict[attr]
             return new_dict
 
-        return dict
+        return full_dict
