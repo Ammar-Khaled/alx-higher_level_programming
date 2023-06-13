@@ -9,7 +9,7 @@ def read_file(filename=""):
             file_name: the path of the file to be read
 
         Raises
-            Exception: when the file can be opened
+            Exception: when the file can't be opened
     """
 
     with open(filename, encoding='utf-8') as f:
