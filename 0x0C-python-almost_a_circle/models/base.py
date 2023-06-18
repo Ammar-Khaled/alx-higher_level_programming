@@ -3,7 +3,7 @@
     The goal of it is to manage `id` attribute."""
 
 import json
-
+import csv
 
 class Base:
     """ The base class."""
@@ -77,6 +77,45 @@ class Base:
 
             list_objs = []
             for dict in list_dicts:
+                list_objs.append(cls.create(**dict))
+
+            return list_objs
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ saves objects in csv file."""
+        list_dicts = []
+
+        if list_objs is not None:
+            for obj in list_objs:
+                list_dicts.append(obj.to_dictionary())
+
+        with open('{}.csv'.format(cls.__name__), 'w', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, list_dicts[0].keys())
+
+            writer.writeheader()
+
+            writer.writerows(list_dicts)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ load object from csv file."""
+
+        try:
+            f = open('{}.csv'.format(cls.__name__), 'r', encoding='utf-8')
+
+            reader = csv.DictReader(f)
+
+            list_dicts = []
+            for row in reader:
+                list_dicts.append(row)
+
+            list_objs = []
+            for dict in list_dicts:
+                for key, value in dict.items():
+                    dict[key] = int(value)
                 list_objs.append(cls.create(**dict))
 
             return list_objs
