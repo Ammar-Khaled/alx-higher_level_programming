@@ -1,6 +1,7 @@
 from unittest import TestCase
 from models.base import Base
 
+
 class TestBase(TestCase):
     """ Test cases for the Base class"""
 
