@@ -1,4 +1,4 @@
-#!/usr/bon/python3
+#!/usr/bin/python3
 """ This module defines the `Base` class of all other classes in this project.
     The goal of it is to manage `id` attribute."""
 
