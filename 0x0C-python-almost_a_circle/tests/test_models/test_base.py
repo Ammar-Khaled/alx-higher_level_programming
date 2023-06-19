@@ -1,56 +1,96 @@
-from unittest import TestCase
+#!/usr/bin/python3
+""" Module for test Base class """
+import unittest
 from models.base import Base
+from models.square import Square
+from models.rectangle import Rectangle
+from io import StringIO
+from unittest import TestCase
+from unittest.mock import patch
 
 
-class TestBase(TestCase):
-    """ Test cases for the Base class"""
+class TestBaseMethods(unittest.TestCase):
+    """ Suite to test Base class """
 
     def setUp(self):
-        """ set up the test"""
-        Base.__nb_objects = 0
-
-    def test_default_id(self):
-        """ test if no given id, increment __nb_objects and assign
-            the new value to the id attribute."""
-        new_obj = Base()
-        self.assertEqual(new_obj.id, 1)
+        """ Method invoked for each test """
+        Base._Base__nb_objects = 0
 
     def test_id(self):
-        """ test assigning the given id to the attribute."""
-        new_obj = Base(2)
-        self.assertEqual(new_obj.id, 2)
+        """ Test assigned id """
+        new = Base(1)
+        self.assertEqual(new.id, 1)
 
-    def test_nb_objects(self):
-        """ test number of objects."""
-        obj1 = Base()
-        obj2 = Base()
-        obj3 = Base()
-        self.assertEqual(obj1.id, 1)
-        self.assertEqual(obj2.id, 2)
-        self.assertEqual(obj3.id, 3)
+    def test_id_default(self):
+        """ Test default id """
+        new = Base()
+        self.assertEqual(new.id, 1)
 
-    def test_mix_ids(self):
-        """ test mix of serial and given ids."""
-        obj1 = Base()
-        obj2 = Base(100)
-        obj3 = Base()
-        self.assertEqual(obj1.id, 1)
-        self.assertEqual(obj2.id, 100)
-        self.assertEqual(obj3.id, 2)
+    def test_id_nb_objects(self):
+        """ Test nb object attribute """
+        new = Base()
+        new2 = Base()
+        new3 = Base()
+        self.assertEqual(new.id, 1)
+        self.assertEqual(new2.id, 2)
+        self.assertEqual(new3.id, 3)
 
-    def test_str_id(self):
-        """ test if the given string id is set as string."""
-        obj1 = Base('1')
-        self.assertEqual(obj1.id, '1')
+    def test_id_mix(self):
+        """ Test nb object attributes and assigned id """
+        new = Base()
+        new2 = Base(1024)
+        new3 = Base()
+        self.assertEqual(new.id, 1)
+        self.assertEqual(new2.id, 1024)
+        self.assertEqual(new3.id, 2)
 
-    def test_more_args_than_id(self):
-        """ test if the __init__ were given args
-            more than id."""
+    def test_string_id(self):
+        """ Test string id """
+        new = Base('1')
+        self.assertEqual(new.id, '1')
+
+    def test_more_args_id(self):
+        """ Test passing more args to init method """
         with self.assertRaises(TypeError):
-            b = Base(1, 1)
+            new = Base(1, 1)
 
-    def test_privacy(self):
-        """ test accessing private attributes."""
+    def test_access_private_attrs(self):
+        """ Test accessing to private attributes """
+        new = Base()
         with self.assertRaises(AttributeError):
-            b = Base()
-            print(b.__nb_objects)
+            new.__nb_objects
+
+    def test_save_to_file_1(self):
+        """ Test JSON file """
+        Square.save_to_file(None)
+        res = "[]\n"
+        with open("Square.json", "r") as file:
+            with patch('sys.stdout', new=StringIO()) as str_out:
+                print(file.read())
+                self.assertEqual(str_out.getvalue(), res)
+
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_2(self):
+        """ Test JSON file """
+        Rectangle.save_to_file(None)
+        res = "[]\n"
+        with open("Rectangle.json", "r") as file:
+            with patch('sys.stdout', new=StringIO()) as str_out:
+                print(file.read())
+                self.assertEqual(str_out.getvalue(), res)
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
