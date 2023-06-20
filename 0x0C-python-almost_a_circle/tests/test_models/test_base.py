@@ -59,3 +59,9 @@ class TestBaseMethods(TestCase):
         new = Base()
         with self.assertRaises(AttributeError):
             new.__nb_objects
+
+    def test_save_empty_list(self):
+        """Test saving an empty list to a file"""
+        Base.save_to_file([])
+        with open('Base.json', 'r') as f:
+            self.assertEqual(f.read(), '[]')
