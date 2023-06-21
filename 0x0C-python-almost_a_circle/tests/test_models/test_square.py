@@ -173,3 +173,9 @@ class TestSquareMethods(TestCase):
 
         for i in range(len(input_list)):
             self.assertEqual(input_list[i].__str__(), output_list[i].__str__())
+
+    def test_str_(self):
+        """ Test __str__ return value """
+        s = Square(3)
+        res = '[Square] (1) 0/0 - 3'
+        self.assertEqual(s.__str__(), res)

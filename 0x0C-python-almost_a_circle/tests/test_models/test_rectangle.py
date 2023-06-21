@@ -137,7 +137,7 @@ class TestRectangleMethods(TestCase):
         new2 = Rectangle(10, 10)
         self.assertEqual(new2.area(), 100)
 
-    def test_str_4(self):
+    def test_str_(self):
         """ Test __str__ return value """
         r1 = Rectangle(3, 3)
         res = "[Rectangle] (1) 0/0 - 3/3"
@@ -192,4 +192,35 @@ class TestRectangleMethods(TestCase):
         self.assertEqual(r1.height, 2)
         self.assertEqual(r1.x, 3)
         self.assertEqual(r1.y, 4)
-        
+
+    def test_zero_width(self):
+        """test if zero width passed."""
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 2)
+
+    def test_zero_height(self):
+        """test if zero height passed."""
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 0)
+
+    def test_init_attrs1(self):
+        """test passing width and height"""
+        r = Rectangle(1, 2)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+
+    def test_init_attrs2(self):
+        """test passing width, height and x"""
+        r = Rectangle(1, 2, 3)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 3)
+
+    def test_init_attrs3(self):
+        """test passing width, height, x and y"""
+        r = Rectangle(1, 2, 3, 4)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 4)
+
