@@ -4,7 +4,7 @@ from unittest import TestCase
 from models.square import Square
 from models.rectangle import Rectangle
 from models.base import Base
-
+import os
 
 class TestSquareMethods(TestCase):
     """ Test Cases for the Square class """
@@ -186,11 +186,23 @@ class TestSquareMethods(TestCase):
         with open("Square.json", "r") as f:
             self.assertEqual(f.read(), '[]')
 
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+
     def test_save_empty_list_to_file(self):
         """test_saving_empty_list_to_file"""
         Square.save_to_file([])
         with open("Square.json", "r") as f:
             self.assertEqual(f.read(), '[]')
+
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
 
     def test_save_to_file(self):
         """test saving to file"""
@@ -198,3 +210,8 @@ class TestSquareMethods(TestCase):
         with open("Square.json", "r") as f:
             res = '[{"id": 1, "size": 1, "x": 0, "y": 0}]'
             self.assertEqual(f.read(), res)
+
+        try:
+            os.remove("Square.json")
+        except:
+            pass

@@ -5,7 +5,7 @@ from unittest.mock import patch
 from io import StringIO
 from models.rectangle import Rectangle
 from models.base import Base
-
+import os
 
 class TestRectangleMethods(TestCase):
     """ Test Cases for Rectangle class """
@@ -254,11 +254,21 @@ class TestRectangleMethods(TestCase):
         with open("Rectangle.json", "r") as f:
             self.assertEqual(f.read(), '[]')
 
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+
     def test_save_empty_list_to_file(self):
         """test_saving_empty_list_to_file"""
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as f:
             self.assertEqual(f.read(), '[]')
+
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
 
     def test_save_to_file(self):
         """test saving to file"""
@@ -266,3 +276,8 @@ class TestRectangleMethods(TestCase):
         with open("Rectangle.json", "r") as f:
             res = '[{"id": 1, "width": 1, "height": 2, "x": 0, "y": 0}]'
             self.assertEqual(f.read(), res)
+
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
