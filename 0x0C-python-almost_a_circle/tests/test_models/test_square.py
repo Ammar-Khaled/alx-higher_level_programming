@@ -179,3 +179,22 @@ class TestSquareMethods(TestCase):
         s = Square(3)
         res = '[Square] (1) 0/0 - 3'
         self.assertEqual(s.__str__(), res)
+
+    def test_save_None_to_file(self):
+        """test_saving_None_to_file"""
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), '[]')
+
+    def test_save_empty_list_to_file(self):
+        """test_saving_empty_list_to_file"""
+        Square.save_to_file([])
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), '[]')
+
+    def test_save_to_file(self):
+        """test saving to file"""
+        Square.save_to_file([Square(1)])
+        with open("Square.json", "r") as f:
+            res = '[{"id": 1, "size": 1, "x": 0, "y": 0}]'
+            self.assertEqual(f.read(), res)

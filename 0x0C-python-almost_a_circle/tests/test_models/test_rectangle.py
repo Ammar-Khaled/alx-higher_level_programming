@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ Module for test Rectangle class """
 from unittest import TestCase
+from unittest.mock import patch
+from io import StringIO
 from models.rectangle import Rectangle
 from models.base import Base
 
@@ -224,3 +226,43 @@ class TestRectangleMethods(TestCase):
         self.assertEqual(r.x, 3)
         self.assertEqual(r.y, 4)
 
+    def test_display(self):
+        """test displaying the rectangle"""
+        res = '##\n##\n##\n##\n'
+        with patch('sys.stdout', new=StringIO()) as out_str:
+            r = Rectangle(2, 4)
+            r.display()
+            self.assertEqual(res, out_str.getvalue())
+
+    def test_display_without_y(self):
+        """test displaying the rectangle without y"""
+        res = ' ##\n ##\n ##\n ##\n'
+        with patch('sys.stdout', new=StringIO()) as out_str:
+            r = Rectangle(2, 4, 1)
+            r.display()
+            self.assertEqual(res, out_str.getvalue())
+
+    def test_to_dictionary(self):
+        """ test to_dictionary function"""
+        res = {'id': 1, 'width': 2, 'height': 4, 'x': 0, 'y': 0}
+        r = Rectangle(2, 4)
+        self.assertEqual(res, r.to_dictionary())
+
+    def test_save_None_to_file(self):
+        """test_saving_None_to_file"""
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), '[]')
+
+    def test_save_empty_list_to_file(self):
+        """test_saving_empty_list_to_file"""
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), '[]')
+
+    def test_save_to_file(self):
+        """test saving to file"""
+        Rectangle.save_to_file([Rectangle(1, 2)])
+        with open("Rectangle.json", "r") as f:
+            res = '[{"id": 1, "width": 1, "height": 2, "x": 0, "y": 0}]'
+            self.assertEqual(f.read(), res)
