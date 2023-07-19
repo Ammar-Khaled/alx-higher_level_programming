@@ -4,31 +4,13 @@ FROM tv_shows
 LEFT JOIN
 (
 	SELECT tv_shows.title -- Query to get Comdey shows
-	FROM tv_genres
-	JOIN tv_show_genres
-	ON tv_genres.id = tv_show_genres.genre_id
-	JOIN tv_shows
-	ON tv_show_genres.show_id = tv_shows.id
+	FROM tv_shows
+    JOIN tv_show_genres
+    ON tv_show_genres.show_id = tv_shows.id
+    JOIN tv_genres
+    ON tv_genres.id = tv_show_genres.genre_id
 	WHERE tv_genres.name = "Comedy"
 	ORDER BY tv_shows.title
 ) Comedy_shows ON Comedy_shows.title = tv_shows.title
 WHERE Comedy_shows.title is NULL
-ORDER BY tv_shows.title;
-
-
--- Script that lists shows that don't belong to Comedy genre
-SELECT tv_shows.title -- Query to get shows that are not comedies
-FROM tv_shows
-LEFT JOIN
-(
-	SELECT tv_shows.title -- Query to get Comedy shows
-	FROM tv_shows
-     	JOIN tv_show_genres
-     	     ON tv_show_genres.show_id = tv_shows.id
-     	JOIN tv_genres
-     	     ON tv_genres.id = tv_show_genres.genre_id
-	WHERE tv_genres.name = "Comedy"
-	ORDER BY tv_shows.id
-) comedy_shows ON comedy_shows.title = tv_shows.title
-WHERE comedy_shows.title is NULL
 ORDER BY tv_shows.title;
