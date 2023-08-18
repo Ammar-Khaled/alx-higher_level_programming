@@ -11,5 +11,6 @@ Base = declarative_base(metadata=mymetadata)
 class State(Base):
     """Define the State that links to the MySQL table `states`."""
     __tablename__ = 'states'
-    id = Column('id', Integer, autoincrement=True, unique=True, nullable=False, primary_key=True)
+    id = Column('id', Integer, autoincrement=True, unique=True,
+                nullable=False, primary_key=True)
     name = Column('name', String(128), nullable=False)
