@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-a script that lists all State objects, and corresponding City objects,
-contained in the database hbtn_0e_101_usa
+a script that lists all City objects from the database hbtn_0e_101_usa
 """
 
 import sys
@@ -20,6 +19,5 @@ if __name__ == '__main__':
 
     states = session.query(State).all()
     for state in states:
-        print(f'{state.id}: {state.name}')
         for city in state.cities:
-            print(f'\t{city.id}: {city.name}')
+            print(f'{city.id}: {city.name} -> {state.name}')
