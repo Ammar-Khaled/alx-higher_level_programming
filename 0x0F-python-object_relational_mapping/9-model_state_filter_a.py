@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script that prints the first State object
+This script that prints the State object that contains letter 'a'
 from the database hbtn_0e_6_usa.
 """
 
