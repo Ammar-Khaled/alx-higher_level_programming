@@ -10,7 +10,7 @@ if __name__ == '__main__':
     from sys import argv
     import json
     url = "http://0.0.0.0:5000/search_user"
-    letter = argv[1]
+    letter = argv[1] if argv[1] else ""
     res = requests.post(url, {"q": letter})
     if (res.headers['Content-Type'] != 'application/json'):
         print('Not a valid JSON')
