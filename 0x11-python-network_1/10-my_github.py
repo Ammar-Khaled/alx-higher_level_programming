@@ -18,5 +18,5 @@ if __name__ == '__main__':
     res_dict = json.loads(res.text)
     try:
         print(res_dict['id'])
-    except:
+    except Error:
         print('None')
