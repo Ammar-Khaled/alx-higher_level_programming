@@ -5,13 +5,11 @@ let characters = [];
 const request = require('request');
 request(url, (error, response) => {
   if (error == null) {
-    let episodeId;
+    let episodeId = 0;
     if (movieId < 4) {
       episodeId = movieId + 3;
-    } else if (movieId < 7) {
-      episodeId = movieId - 3;
     } else {
-      episodeId = movieId;
+      episodeId = movieId - 3;
     }
     const results = JSON.parse(response.body).results;
 
