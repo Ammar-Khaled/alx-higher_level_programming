@@ -1,10 +1,11 @@
 #!/usr/bin/node
-let id = parseInt(process.argv[2], 10);
-const url = 'https://swapi-api.alx-tools.com/api/films/';
-let characters = [];
 const request = require('request');
-request(url, (error, response, body) => {
-  if (error == null) {
+const url = 'http://swapi.co/api/films/';
+let id = parseInt(process.argv[2], 10);
+let characters = [];
+
+request(url, function (err, response, body) {
+  if (err == null) {
     const resp = JSON.parse(body);
     const results = resp.results;
     if (id < 4) {
@@ -12,17 +13,14 @@ request(url, (error, response, body) => {
     } else {
       id -= 3;
     }
-
-
-    for (let k = 0; k < results.length; k++) {
-      if (results[k].episode_id === id) {
-        characters = results[k].characters;
+    for (let i = 0; i < results.length; i++) {
+      if (results[i].episode_id === id) {
+        characters = results[i].characters;
         break;
       }
     }
-
-    for (let i = 0; i < characters.length; i++) {
-      request(characters[i], (err, resp, body) => {
+    for (let j = 0; j < characters.length; j++) {
+      request(characters[j], function (err, response, body) {
         if (err == null) {
           console.log(JSON.parse(body).name);
         }
