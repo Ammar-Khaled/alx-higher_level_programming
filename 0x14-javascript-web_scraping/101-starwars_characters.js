@@ -1,10 +1,27 @@
 #!/usr/bin/node
-const movieId = process.argv[2];
+const movieId = parseInt(process.argv[2], 10);
 const url = 'https://swapi-api.alx-tools.com/api/films/';
+let characters = [];
 const request = require('request');
-request(url + movieId, (error, response) => {
+request(url, (error, response) => {
   if (error == null) {
-    const characters = JSON.parse(response.body).characters;
+    let episodeId;
+    if (movieId < 4) {
+      episodeId = movieId + 3;
+    } else if (movieId < 7) {
+      episodeId = movieId - 3;
+    } else {
+      episodeId = movieId;
+    }
+    const results = JSON.parse(response.body).results;
+
+    for (let k = 0; k < results.length; k++) {
+      if (results[k].episode_id === episodeId) {
+        characters = results[k].characters;
+        break;
+      }
+    }
+
     for (let i = 0; i < characters.length; i++) {
       request(characters[i], (err, resp) => {
         if (err == null) {
