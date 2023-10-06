@@ -3,7 +3,7 @@ window.onload = function () {
   function sayHello () {
     const inputLang = $('INPUT#language_code').val();
     console.log(inputLang);
-    $.get('https://fourtonfish.com/hellosalut/', { lang: inputLang }, function (data) {
+    $.get('https://hellosalut.stefanbohacek.dev/', { lang: inputLang }, function (data) {
       $('DIV#hello').text(data.hello);
     });
   }
